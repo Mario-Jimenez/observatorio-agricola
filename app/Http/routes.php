@@ -15,6 +15,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/api/v1/canton', 'CantonController@obtenerCantones');
+Route::get('/api/v1/distrito/{id}', 'DistritoController@obtenerDistritos');
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
