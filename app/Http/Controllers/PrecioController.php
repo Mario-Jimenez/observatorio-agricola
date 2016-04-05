@@ -9,43 +9,51 @@ use App\Http\Controllers\Controller;
 
 class PrecioController extends Controller
 {
-    public function obtenerProductos()
+    public function obtenerPrecios()
 	{
-		return Producto::select('id', 'nombre', 'imagen')->orderBy('id', 'asc')->get();
+		return Precio::orderBy('id', 'asc')->get();
 	}
 
-	public function guardarProducto(Request $request, $id_tipo_producto)
+	public function guardarPrecio(Request $request)
 	{
-		$producto = new Producto;
+		$precio = new Precio;
 
-		$producto->nombre = $request->input('nombre');
-		$producto->imagen = $request->input('imagen');
-		$producto->id_tipo_producto = $id_tipo_producto;
+		$precio->fecha = $request->input('fecha');
+		$precio->precio = $request->input('precio');
+		$precio->valor_unidad_venta = $request->input('valor_unidad_venta');
+		$precio->id_producto = $request->input('id_producto');
+		$precio->id_unidad_venta = $request->input('id_unidad_venta');
+		$precio->id_ubicacion_exacta = $request->input('id_ubicacion_exacta');
+		$precio->id_procedencia = $request->input('id_procedencia');
 
-		$producto->save();
+		$precio->save();
 
-		return 'Producto guardado correctamente con el id' . $producto->id;
+		return 'Precio guardado correctamente con el id' . $producto->id;
 	}
 
-	public function actualizarProducto(Request $request, $id, $id_tipo_producto)
+	public function actualizarProducto(Request $request, $id)
 	{
-		$producto = Producto::find($id);
+		$precio = Precio::find($id);
 
-		$producto->nombre = $request->input('nombre');
-		$producto->imagen = $request->input('imagen');
-		$producto->id_tipo_producto = $id_tipo_producto;
+		$precio->fecha = $request->input('fecha');
+		$precio->precio = $request->input('precio');
+		$precio->valor_unidad_venta = $request->input('valor_unidad_venta');
+		$precio->id_producto = $request->input('id_producto');
+		$precio->id_unidad_venta = $request->input('id_unidad_venta');
+		$precio->id_ubicacion_exacta = $request->input('id_ubicacion_exacta');
+		$precio->id_procedencia = $request->input('id_procedencia');
 
-		$producto->save();
+		$precio->save();
 
-		return 'Producto actualizado correctamente con el id' . $producto->id;
+		return 'Precio actualizado correctamente con el id' . $producto->id;
 	}
 
-	public function eliminarProducto($id)
+	public function eliminarPrecio($id)
 	{
-		$producto = Producto::find($id);
+		$precio = Precio::find($id);
 
-		$producto->delete();
+		$precio->delete();
 
-		return 'Producto eliminado correctamente con el id' . $id;
+		return 'Precio eliminado correctamente con el id' . $id;
 	}
 }
