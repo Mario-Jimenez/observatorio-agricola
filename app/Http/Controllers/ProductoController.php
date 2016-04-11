@@ -9,9 +9,12 @@ use App\Http\Controllers\Controller;
 
 class ProductoController extends Controller
 {
-    public function obtenerProductos()
+    public function obtenerProductos($id_tipo_producto)
 	{
-		return Producto::select('id', 'nombre', 'imagen')->orderBy('id', 'asc')->get();
+		return Producto::select('id', 'nombre', 'imagen')
+					->where('id_tipo_producto', $id_tipo_producto)
+					->orderBy('id', 'asc')
+					->get();
 	}
 
 	public function guardarProducto(Request $request, $id_tipo_producto)
